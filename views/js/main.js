@@ -448,11 +448,27 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
+  // Iterates through pizza elements on the page and changes their widths
+  // Updated based on video from Cameron.
   function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+    switch (size) {
+      case "1":
+        newWidth =25;
+        break;
+      case "2":
+        newWidth = 33.3;
+        break;
+      case "3":
+        newWidth = 50;
+        break;
+      default:
+        console.log("Something went wrong with size switcher");
+    }
+
+    var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
+
+    for (var i = 0; i < randomPizzas.length; i++) {
+      randomPizzas[i].style.width = newWidth + "%";
     }
   }
 
@@ -502,9 +518,12 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
+  // Pull the scroll top outside of the for loop
+  // to prevent orced synchronous Layout!!!
+  var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  
   for (var i = 0; i < items.length; i++) {
     // document.body.scrollTop is no longer supported in Chrome.
-    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     var phase = Math.sin((scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
@@ -518,6 +537,7 @@ function updatePositions() {
     logAverageFrame(timesToUpdatePosition);
   }
 }
+
 
 // runs updatePositions on scroll
 window.addEventListener('scroll', updatePositions);
