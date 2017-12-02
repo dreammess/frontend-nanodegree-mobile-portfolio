@@ -1,0 +1,30 @@
+{
+  "name": "web_optimization",
+  "version": "0.0.1",
+  "description": "Project for Udacity's web optimization course.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dreammess/frontend-nanodegree-mobile-portfolio.git"
+  },
+  "keywords": [
+    "udacity"
+  ],
+  "author": "Magdalena Stevens",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dreammess/frontend-nanodegree-mobile-portfolio/issues"
+  },
+  "homepage": "https://github.com/dreammess/frontend-nanodegree-mobile-portfolio#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-imagemin": "^4.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0"
+  }
+}
