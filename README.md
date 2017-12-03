@@ -47,6 +47,9 @@ Further optimizations of index.html include:
 Further optimizations of pizza.html include:
 
 * Replacing "querySelector/querySelectorAll" with getElementById and co.
+* Number of pizzas were calculated using the screen height, thus reducing total number of pizzas created.
+* Variable declarations were removed from inside of for loops.
+* Length conditions for loops were stored in local variable to prevent unneeded calculations.
 * Refactoring of the updatePositions function. 
 * Refactoring of the changePizzaSizes function.
 

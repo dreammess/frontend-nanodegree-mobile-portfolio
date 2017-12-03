@@ -465,9 +465,11 @@ var resizePizzas = function(size) {
         console.log("Something went wrong with size switcher");
     }
 
-    var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
+    var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
 
-    for (var i = 0; i < randomPizzas.length; i++) {
+    // Remove the length calculation from the for loop to improve
+    // code performance
+    for (var i = 0, len = randomPizzas.length; i < len; i++) {
       randomPizzas[i].style.width = newWidth + "%";
     }
   }
@@ -522,20 +524,20 @@ function updatePositions() {
 
   // Pull the scroll top outside of the for loop
   // to prevent orced synchronous Layout!!!
-  var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  var top = (document.documentElement.scrollTop || document.body.scrollTop) / 1250
 
   // As phase can only be one of 5 values, we can create them here in a short
   // loop to prevent some calucations from being repeated.
   var phases = [];
   for (var i = 0; i < 5; i++) {
-    var step = Math.sin((scrollTop / 1250) + (i % 5));
+    var step = Math.sin(top + (i % 5));
     phases.push(step); 
   }
 
-  for (var i = 0; i < items.length; i++) {
+  for (var i = 0, len = items.length, phase; i < len; i++) {
     // document.body.scrollTop is no longer supported in Chrome.
     // var phase = Math.sin((scrollTop / 1250) + (i % 5));
-    var phase = phases[(i % 5)];
+    phase = phases[(i % 5)];
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -560,8 +562,14 @@ document.addEventListener('DOMContentLoaded', function() {
   // Moved querySelector outside of loop and changed to
   // getElementById
   var movingPizzas1 = document.getElementById("movingPizzas1");
-  for (var i = 0; i < 200; i++) {
-    var elem = document.createElement('img');
+  // Dynamically get number of pizzas using by calculating
+  // screen height and cols;
+  var screenHeight = window.screen.height /s;
+  screenHeight *= cols;
+  console.log(screenHeight);
+  
+  for (var i = 0, elem; i < 24; i++) {
+    elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
